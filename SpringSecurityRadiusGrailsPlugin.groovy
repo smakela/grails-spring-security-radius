@@ -2,16 +2,16 @@ class SpringSecurityRadiusGrailsPlugin {
     // the plugin version
     def version = "0.1"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.3.7 > *"
+    def grailsVersion = "2.0 > *"
     // the other plugins this plugin depends on
-    def dependsOn = ['springSecurityCore': '1.1.3 > *']
+    def dependsOn = ['springSecurityCore': '1.2.4 > *']
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
         "grails-app/views/error.gsp"
     ]
 
     def title = "Spring Security Radius Plugin" // Headline display name of the plugin
-    def author = "Sami Mäkelä"
+    def author = "Sami M√§kel√§"
     def authorEmail = "smakela@iki.fi"
     def description = 'Integrates Radius Authentication to Grails'
 
