@@ -1,6 +1,6 @@
-# ABOUT
+# About
 
 Grails plugin for RADIUS authentication.
 
-## AUTHORS:
+# Authors:
 * Sami Mäkelä
