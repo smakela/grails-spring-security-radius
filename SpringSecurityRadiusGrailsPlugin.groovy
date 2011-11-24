@@ -14,7 +14,7 @@
  */
 
 /**
- * @author Sami Mäkelä
+ * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
  */
 class SpringSecurityRadiusGrailsPlugin {
     // the plugin version
