@@ -25,7 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 class GrailsRadiusAuthenticationProvider extends
     AbstractUserDetailsAuthenticationProvider {
 
-    GrailsRadiusAuthenticator radiusAuthenticator
+    GrailsRadiusAuthenticator grailsRadiusAuthenticator
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails,
@@ -43,10 +43,10 @@ class GrailsRadiusAuthenticationProvider extends
     }
 
     public setGrailsRadiusAuthenticator(GrailsRadiusAuthenticator grailsRadiusAuthenticator) {
-        this.radiusAuthenticator = radiusAuthenticator
+        this.grailsRadiusAuthenticator = grailsRadiusAuthenticator
     }
 
     public GrailsRadiusAuthenticator getGrailsRadiusAuthenticator() {
-        return radiusAuthenticator
+        return grailsRadiusAuthenticator
     }
 }
