@@ -21,15 +21,32 @@ log4j = {
            'net.sf.ehcache.hibernate'
 
     warn   'org.mortbay.log'
+	debug  'net.jradius'
 }
 
 grails {
     plugins {
         springsecurity {
             radius {
-                host='grails.org'
-                sharedSecret='foo2bar'
+                host='motp'
+                sharedSecret='1234567890'
             }
         }
     }
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'radius.test.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'radius.test.UserRole'
+grails.plugins.springsecurity.authority.className = 'radius.test.Role'
+
+grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
+
+grails.plugins.springsecurity.interceptUrlMap = [
+	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+	'/*':            ['IS_AUTHENTICATED_FULLY']
+ ]

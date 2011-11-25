@@ -71,7 +71,7 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
         RadiusPacket reply
 
         try {
-            RadiusClient radiusClient = new RadiusClient(InetAddress.byName(radiusHost),
+            RadiusClient radiusClient = new RadiusClient(InetAddress.getByName(radiusHost),
                 sharedSecret, authenticationPort, accountingPort, timeout)
             RadiusPacket request = new AccessRequest(radiusClient, radiusAttributes)
             reply = radiusClient.authenticate(request, radiusAuthenticator, retries)
