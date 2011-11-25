@@ -22,3 +22,14 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+grails {
+    plugins {
+        springsecurity {
+            radius {
+                host='grails.org'
+                sharedSecret='foo2bar'
+            }
+        }
+    }
+}

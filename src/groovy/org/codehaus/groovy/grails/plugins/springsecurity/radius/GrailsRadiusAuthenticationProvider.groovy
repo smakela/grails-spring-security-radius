@@ -14,10 +14,12 @@
  */
 package org.codehaus.groovy.grails.plugins.springsecurity.radius
 
+import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
+import org.springframework.security.core.AuthenticationException
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
 
 /**
  * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
@@ -26,27 +28,19 @@ class GrailsRadiusAuthenticationProvider extends
     AbstractUserDetailsAuthenticationProvider {
 
     GrailsRadiusAuthenticator grailsRadiusAuthenticator
+    UserDetailsService userDetailsService
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails,
         UsernamePasswordAuthenticationToken authentication)
         throws AuthenticationException {
+        //no-operation
     }
 
     @Override
     protected UserDetails retrieveUser(String userName,
         UsernamePasswordAuthenticationToken authentication)
         throws AuthenticationException {
-
-        GrailsRadiusAuthenticator authenticator = getGrailsRadiusAuthenticator()
-        authenticator.authenticate(authentication)
-    }
-
-    public setGrailsRadiusAuthenticator(GrailsRadiusAuthenticator grailsRadiusAuthenticator) {
-        this.grailsRadiusAuthenticator = grailsRadiusAuthenticator
-    }
-
-    public GrailsRadiusAuthenticator getGrailsRadiusAuthenticator() {
-        return grailsRadiusAuthenticator
+        grailsRadiusAuthenticator.authenticate(authentication)
     }
 }

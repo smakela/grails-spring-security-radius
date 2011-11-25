@@ -21,6 +21,7 @@ security {
         active = true
         timeout = 5
         retries = 3
+        authenticatorClassName = 'net.jradius.client.auth.PAPAuthenticator'
 
         authentication {
             port = 1812
