@@ -74,12 +74,14 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
             radiusClient.authenticate(request, radiusAuthenticator, retries)
         } catch (RadiusException re) {
             throw new AuthenticationServiceException("Error connecting to radius server", re)
+        } catch (UnknownHostException uhe) {
+            throw new AuthenticationServiceException("Unknown radiusHost", uhe)
         } catch (IOException ioe) {
             throw new AuthenticationServiceException("Error connecting to radius server", ioe)
         }
 
         if (!reply) {
-            throw new AuthenticationServiceException("Timed out connecting to radius server")
+            throw new AuthenticationServiceException("Timed out while connecting to radius server")
         }
 
         if (!(reply instanceof AccessAccept)) {
