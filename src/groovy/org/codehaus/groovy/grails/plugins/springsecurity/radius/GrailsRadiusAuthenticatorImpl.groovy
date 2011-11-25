@@ -75,7 +75,7 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
         } catch (RadiusException re) {
             throw new AuthenticationServiceException("Error connecting to radius server", re)
         } catch (UnknownHostException uhe) {
-            throw new AuthenticationServiceException("Unknown radiusHost", uhe)
+            throw new AuthenticationServiceException("Unknown radius host", uhe)
         } catch (IOException ioe) {
             throw new AuthenticationServiceException("Error connecting to radius server", ioe)
         }
@@ -93,12 +93,12 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
 
     @Override
     public void afterPropertiesSet() {
-        Assert.notNull(this.radiusAuthenticator, "A RadiusAuthenticator must be specified")
-        Assert.notNull(this.sharedSecret, "A shared secret must be specified")
-        Assert.notNull(this.radiusHost, "A hostname must be specified")
-        Assert.isTrue(this.authenticationPort > 0, "A authentication port number must be greater than 0")
-        Assert.isTrue(this.accountingPort > 0, "A accounting port number must be greater than 0")
-        Assert.isTrue(this.timeout > 0, "A timeout must be greater than 0")
-        Assert.isTrue(this.retries >= 0, "A retries must be greater than 0 or equal to 0")
+        Assert.notNull(radiusAuthenticator, "RadiusAuthenticator must be specified")
+        Assert.notNull(sharedSecret, "Shared secret must be specified")
+        Assert.notNull(radiusHost, "Hostname must be specified")
+        Assert.isTrue(authenticationPort > 0, "Authentication port number must be greater than 0")
+        Assert.isTrue(accountingPort > 0, "Accounting port number must be greater than 0")
+        Assert.isTrue(timeout > 0, "Timeout must be greater than 0")
+        Assert.isTrue(retries >= 0, "Retries must be greater than 0 or equal to 0")
     }
 }
