@@ -15,21 +15,29 @@ grails.project.dependency.resolution = {
         grailsCentral()
         mavenCentral()
         mavenRepo "http://dev.coova.org/mvn/"
-		mavenRepo "http://www.terracotta.org/download/reflector/releases"
+        // for ehcache 2.2.0 dependency problem (GRAILS problem?)
+        // http://jira.terracotta.org/jira/browse/EHC-811
+        mavenRepo "http://www.terracotta.org/download/reflector/releases"
     }
     dependencies {
         compile('org.springframework.security:spring-security-core:3.0.5.RELEASE') {
             transitive = false
         }
         compile('net.jradius:jradius-core:1.1.4') {
-			excludes 'jmxtools', 'jmxri', 'jms'
-		}
+            // uses log4j 1.2.15 which has bad dependencies
+            // just exclude log4j?
+            excludes 'jmxtools', 'jmxri', 'jms'
+        }
         compile('net.jradius:jradius-dictionary:1.1.4') {
-			excludes 'jmxtools', 'jmxri', 'jms'
-		}
+            // uses log4j 1.2.15 which has bad dependencies
+            // just exclude log4j?
+            excludes 'jmxtools', 'jmxri', 'jms'
+        }
         compile('net.jradius:jradius-extended:1.1.4') {
-			excludes 'jmxtools', 'jmxri', 'jms'
-		}
+            // uses log4j 1.2.15 which has bad dependencies
+            // just exclude log4j?
+            excludes 'jmxtools', 'jmxri', 'jms'
+        }
     }
 
     plugins {

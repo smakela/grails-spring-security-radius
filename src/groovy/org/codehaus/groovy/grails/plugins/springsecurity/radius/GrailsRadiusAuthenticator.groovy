@@ -21,5 +21,5 @@ import org.springframework.security.core.userdetails.UserDetails
 * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
 */
 interface GrailsRadiusAuthenticator {
-    public UserDetails authenticate(UsernamePasswordAuthenticationToken authentication)
+    UserDetails authenticate(UsernamePasswordAuthenticationToken authentication)
 }

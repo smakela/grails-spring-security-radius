@@ -21,7 +21,8 @@ log4j = {
            'net.sf.ehcache.hibernate'
 
     warn   'org.mortbay.log'
-	debug  'net.jradius'
+    debug  'net.jradius',
+           'org.codehaus.groovy.grails.plugins.springsecurity.radius'
 }
 
 grails {
@@ -43,10 +44,10 @@ grails.plugins.springsecurity.authority.className = 'radius.test.Role'
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 
 grails.plugins.springsecurity.interceptUrlMap = [
-	'/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
-	'/*':            ['IS_AUTHENTICATED_FULLY']
+    '/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/login/**':     ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/*':            ['IS_AUTHENTICATED_FULLY']
  ]

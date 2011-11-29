@@ -24,7 +24,11 @@ import net.jradius.packet.AccessRequest
 import net.jradius.packet.RadiusPacket
 import net.jradius.packet.attribute.AttributeFactory
 import net.jradius.packet.attribute.AttributeList
+import net.jradius.packet.attribute.RadiusAttribute
 
+import org.apache.commons.logging.LogFactory
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import org.codehaus.groovy.runtime.powerassert.AssertionRenderer;
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.BadCredentialsException
@@ -34,18 +38,21 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.util.Assert
 
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-
 /**
  * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
  */
 class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, InitializingBean {
 
-    static final List NO_ROLES = [
+    private static final log = LogFactory.getLog(this)
+    private static final List NO_ROLES = [
         new GrantedAuthorityImpl(SpringSecurityUtils.NO_ROLE)
     ]
 
-    RadiusAuthenticator radiusAuthenticator
+    static {
+        AttributeFactory.loadAttributeDictionary("net.jradius.dictionary.AttributeDictionaryImpl")
+    }
+
+    String radiusAuthenticatorClassNme
     String radiusHost
     String sharedSecret
     int authenticationPort
@@ -53,13 +60,8 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
     int retries
     int timeout
 
-    static {
-        AttributeFactory.loadAttributeDictionary("net.jradius.dictionary.AttributeDictionaryImpl")
-    }
-
     @Override
-    public UserDetails authenticate(
-    UsernamePasswordAuthenticationToken authentication) {
+    UserDetails authenticate(UsernamePasswordAuthenticationToken authentication) {
 
         String username = authentication.getPrincipal()
         String password = authentication.getCredentials()
@@ -72,36 +74,49 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
 
         try {
             RadiusClient radiusClient = new RadiusClient(InetAddress.getByName(radiusHost),
-                sharedSecret, authenticationPort, accountingPort, timeout)
+                    sharedSecret, authenticationPort, accountingPort, timeout)
             RadiusPacket request = new AccessRequest(radiusClient, radiusAttributes)
-            reply = radiusClient.authenticate(request, radiusAuthenticator, retries)
+            reply = radiusClient.authenticate(request, Class.forName(radiusAuthenticatorClassNme).newInstance(), retries)
         } catch (RadiusException re) {
             throw new AuthenticationServiceException("Error connecting to radius server", re)
         } catch (UnknownHostException uhe) {
             throw new AuthenticationServiceException("Unknown radius host", uhe)
         } catch (IOException ioe) {
             throw new AuthenticationServiceException("Error connecting to radius server", ioe)
+        } catch (ClassNotFoundException cnfe) {
+            throw new AuthenticationServiceException("Cannot find radius authenticator: ${radiusAuthenticatorClassNme}", cnfe)
         }
 
         if (!reply) {
+            log.debug("Timed out while connecting to radius server")
             throw new AuthenticationServiceException("Timed out while connecting to radius server")
         }
 
         if (!(reply instanceof AccessAccept)) {
+            log.debug("Bad credentials")
             throw new BadCredentialsException("Bad credentials")
         }
+
+        //TODO: Radius attributes handling for roles etc.
 
         new User(username, password, true, true, true, true, NO_ROLES);
     }
 
     @Override
-    public void afterPropertiesSet() {
-        Assert.notNull(radiusAuthenticator, "RadiusAuthenticator must be specified")
-        Assert.notNull(sharedSecret, "Shared secret must be specified")
-        Assert.notNull(radiusHost, "Hostname must be specified")
+    void afterPropertiesSet() {
+        Assert.hasLength(radiusAuthenticatorClassNme, "RadiusAuthenticator classname must be specified")
+        log.debug("radiusAuthenticatorClassNme: ${radiusAuthenticatorClassNme}")
+        Assert.hasLength(sharedSecret, "Shared secret must be specified")
+        log.debug("sharedSecret: ${sharedSecret}")
+        Assert.hasLength(radiusHost, "Hostname must be specified")
+        log.debug("radiusHost: ${radiusHost}")
         Assert.isTrue(authenticationPort > 0, "Authentication port number must be greater than 0")
+        log.debug("authenticationPort: ${authenticationPort}")
         Assert.isTrue(accountingPort > 0, "Accounting port number must be greater than 0")
+        log.debug("accountingPort: ${accountingPort}")
         Assert.isTrue(timeout > 0, "Timeout must be greater than 0")
+        log.debug("timeout: ${timeout}")
         Assert.isTrue(retries >= 0, "Retries must be greater than 0 or equal to 0")
+        log.debug("retries: ${retries}")
     }
 }

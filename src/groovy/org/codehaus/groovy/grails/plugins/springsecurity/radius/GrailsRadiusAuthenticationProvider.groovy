@@ -34,13 +34,15 @@ class GrailsRadiusAuthenticationProvider extends
     protected void additionalAuthenticationChecks(UserDetails userDetails,
         UsernamePasswordAuthenticationToken authentication)
         throws AuthenticationException {
-        //no-operation
+        //no-operation, radius server has already done the password checking etc.
     }
 
     @Override
     protected UserDetails retrieveUser(String userName,
         UsernamePasswordAuthenticationToken authentication)
         throws AuthenticationException {
+        //TODO: Configurable option to fetch user from database? ->
+        // Radius authentication, DB authorization
         grailsRadiusAuthenticator.authenticate(authentication)
     }
 }
