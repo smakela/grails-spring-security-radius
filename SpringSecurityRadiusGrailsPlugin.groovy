@@ -66,7 +66,7 @@ class SpringSecurityRadiusGrailsPlugin {
         println 'Configuring Spring Security RADIUS ...'
 
         grailsRadiusAuthenticator(GrailsRadiusAuthenticatorImpl) {
-            radiusAuthenticatorClassNme = conf.radius.authenticatorClassName
+            radiusAuthenticatorClassName = conf.radius.authenticatorClassName
             sharedSecret = conf.radius.sharedSecret
             radiusHost = conf.radius.host
             authenticationPort = conf.radius.authentication.port

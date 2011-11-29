@@ -52,7 +52,7 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
         AttributeFactory.loadAttributeDictionary("net.jradius.dictionary.AttributeDictionaryImpl")
     }
 
-    String radiusAuthenticatorClassNme
+    String radiusAuthenticatorClassName
     String radiusHost
     String sharedSecret
     int authenticationPort
