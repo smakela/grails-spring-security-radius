@@ -1,0 +1,7 @@
+h2. Minimal configuration
+
+You have to configure two parameters in the @grails-app/conf/Config.groovy@:
+{code}
+grails.plugins.springsecurity.radius.host = 'your.radiusserver.org'
+grails.plugins.springsecurity.radius.sharedSecret = '1234567890'
+{code}

@@ -1,0 +1,6 @@
+Mobile-OTP is a free "strong authentication" solution for mobile devices like phones or PDAs.
+
+Using static passwords for authentication, as it is commonly done, has quite a few security drawbacks:
+passwords can be guessed, forgotten, written down and stolen, eavesdropped or deliberately being told to other people.
+A better, more secure way of authentication is the so called "two-factor" or "strong authentication" based on one time passwords.
+Instead of authenticating with a simple password, each user carries a device ("token") to generate passwords that are valid only one time.

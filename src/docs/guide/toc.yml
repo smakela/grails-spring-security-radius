@@ -1,0 +1,14 @@
+introduction:
+    title: Introduction
+configuration:
+    title: Configuration
+    parameters: Configurable parameters
+tutorials:
+    title: Tutorials
+    motp:
+        title: Radius authentication using Mobile-OTP
+        server:
+            title: MOTP Server
+            serverConfiguration: Configuration
+        client:
+            title: MOTP Client

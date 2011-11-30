@@ -1,0 +1,6 @@
+Remote Authentication Dial In User Service (RADIUS) is a networking protocol that provides centralized Authentication, Authorization, and Accounting (AAA) management for computers to connect and use a network service.
+
+This plugin serves two of these functions:
+
+# to authenticate users
+# to authorize users

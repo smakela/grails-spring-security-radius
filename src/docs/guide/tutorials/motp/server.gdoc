@@ -1,0 +1,10 @@
+In this tutorial we are using Mobile-OTP Authentication Server (MOTP-AS) as our server.
+
+It's full blown RADIUS server specifically for Mobile-OTP. Features include:
+* authenticating users by RADIUS (and optionally PAM or Apache)
+* SQL database for user/device configuration
+* Administration Web Interface (for admins and users)
+
+You can download it from [here| http://motp-as.network-cube.de/index.php/download/current-version]
+
+I strongly recommend virtual image as it's a no-brainer to import to your favorite virtualization environment.

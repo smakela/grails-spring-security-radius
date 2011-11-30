@@ -25,16 +25,9 @@ log4j = {
            'org.codehaus.groovy.grails.plugins.springsecurity.radius'
 }
 
-grails {
-    plugins {
-        springsecurity {
-            radius {
-                host='motp'
-                sharedSecret='1234567890'
-            }
-        }
-    }
-}
+// Radius config
+grails.plugins.springsecurity.radius.host='motp'
+grails.plugins.springsecurity.radius.sharedSecret='1234567890'
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'radius.test.User'
@@ -51,3 +44,7 @@ grails.plugins.springsecurity.interceptUrlMap = [
     '/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
     '/*':            ['IS_AUTHENTICATED_FULLY']
  ]
+
+grails.doc.title = 'Spring Security RADIUS Plugin'
+grails.doc.subtitle = 'Spring Security RADIUS Plugin'
+grails.doc.authors = 'Sami Mäkelä'
