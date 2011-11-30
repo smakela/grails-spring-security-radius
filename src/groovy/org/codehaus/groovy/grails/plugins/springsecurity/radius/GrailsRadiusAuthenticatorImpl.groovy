@@ -15,7 +15,6 @@
 package org.codehaus.groovy.grails.plugins.springsecurity.radius
 
 import net.jradius.client.RadiusClient
-import net.jradius.client.auth.RadiusAuthenticator
 import net.jradius.dictionary.Attr_UserName
 import net.jradius.dictionary.Attr_UserPassword
 import net.jradius.exception.RadiusException
@@ -24,11 +23,10 @@ import net.jradius.packet.AccessRequest
 import net.jradius.packet.RadiusPacket
 import net.jradius.packet.attribute.AttributeFactory
 import net.jradius.packet.attribute.AttributeList
-import net.jradius.packet.attribute.RadiusAttribute
 
-import org.apache.commons.logging.LogFactory
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-import org.codehaus.groovy.runtime.powerassert.AssertionRenderer;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.BadCredentialsException
@@ -43,7 +41,7 @@ import org.springframework.util.Assert
  */
 class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, InitializingBean {
 
-    private static final log = LogFactory.getLog(this)
+    private static final Logger log = LoggerFactory.getLogger(getClass())
     private static final List NO_ROLES = [
         new GrantedAuthorityImpl(SpringSecurityUtils.NO_ROLE)
     ]
