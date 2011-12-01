@@ -7,5 +7,6 @@ active | true | Is plugin enabled?
 timeout | 5 | How long to wait response from the RADIUS server (seconds)
 retries | 3 | How many times we want to retry connection to the RADIUS server?
 authentication.port | 1812 | Authentication port of the RADIUS server
-accounting | 1813 | Accounting port of the RADIUS server
+authorization.useDatabase | false | Get roles etc. from the database?
+accounting.port | 1813 | Accounting port of the RADIUS server
 {table}

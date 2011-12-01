@@ -14,12 +14,10 @@
  */
 package org.codehaus.groovy.grails.plugins.springsecurity.radius
 
-import org.springframework.security.authentication.BadCredentialsException
+import org.codehaus.groovy.grails.plugins.springsecurity.GormUserDetailsService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
-import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
 
 /**
  * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
@@ -28,21 +26,22 @@ class GrailsRadiusAuthenticationProvider extends
     AbstractUserDetailsAuthenticationProvider {
 
     GrailsRadiusAuthenticator grailsRadiusAuthenticator
-    UserDetailsService userDetailsService
+    GormUserDetailsService userDetailsService
+    boolean authorizeFromDb
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails,
-        UsernamePasswordAuthenticationToken authentication)
-        throws AuthenticationException {
+        UsernamePasswordAuthenticationToken token) {
         //no-operation, radius server has already done the password checking etc.
     }
 
     @Override
     protected UserDetails retrieveUser(String userName,
-        UsernamePasswordAuthenticationToken authentication)
-        throws AuthenticationException {
-        //TODO: Configurable option to fetch user from database? ->
-        // Radius authentication, DB authorization
-        grailsRadiusAuthenticator.authenticate(authentication)
+        UsernamePasswordAuthenticationToken token) {
+        def userDetails = grailsRadiusAuthenticator.authenticate(token)
+        if (authorizeFromDb) {
+            userDetails = userDetailsService.loadUserByUsername(userName)
+        }
+        userDetails
     }
 }

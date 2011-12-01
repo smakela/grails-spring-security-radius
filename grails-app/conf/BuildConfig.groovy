@@ -20,9 +20,6 @@ grails.project.dependency.resolution = {
         mavenRepo "http://www.terracotta.org/download/reflector/releases"
     }
     dependencies {
-        compile('org.springframework.security:spring-security-core:3.0.5.RELEASE') {
-            transitive = false
-        }
         compile('net.jradius:jradius-core:1.1.4') {
             // uses log4j 1.2.15 which has bad dependencies
             // just exclude log4j?

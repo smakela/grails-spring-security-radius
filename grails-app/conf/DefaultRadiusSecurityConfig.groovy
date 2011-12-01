@@ -28,6 +28,9 @@ security {
         authentication {
             port = 1812
         }
+        authorization {
+            useDatabase = false
+        }
         accounting {
             port = 1813
         }

@@ -4,3 +4,4 @@ This plugin serves two of these functions:
 
 # to authenticate users
 # to authorize users
+** Note: Authorization uses Grails application's database, because there is no standard attribute for roles in RADIUS.
