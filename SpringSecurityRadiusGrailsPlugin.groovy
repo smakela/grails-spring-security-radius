@@ -37,7 +37,7 @@ class SpringSecurityRadiusGrailsPlugin {
     def description = 'Integrates Radius Authentication to Grails'
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/spring-security-radius"
+    def documentation = "http://smakela.github.com/grails-spring-security-radius/"
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'
     def license = "APACHE"

@@ -74,7 +74,7 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
             RadiusClient radiusClient = new RadiusClient(InetAddress.getByName(radiusHost),
                     sharedSecret, authenticationPort, accountingPort, timeout)
             RadiusPacket request = new AccessRequest(radiusClient, radiusAttributes)
-            reply = radiusClient.authenticate(request, Class.forName(radiusAuthenticatorClassNme).newInstance(), retries)
+            reply = radiusClient.authenticate(request, Class.forName(radiusAuthenticatorClassName).newInstance(), retries)
         } catch (RadiusException re) {
             throw new AuthenticationServiceException("Error connecting to radius server", re)
         } catch (UnknownHostException uhe) {
@@ -111,8 +111,8 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
 
     @Override
     void afterPropertiesSet() {
-        Assert.hasLength(radiusAuthenticatorClassNme, "RadiusAuthenticator classname must be specified")
-        log.debug("radiusAuthenticatorClassNme: ${radiusAuthenticatorClassNme}")
+        Assert.hasLength(radiusAuthenticatorClassName, "RadiusAuthenticator classname must be specified")
+        log.debug("radiusAuthenticatorClassNme: ${radiusAuthenticatorClassName}")
         Assert.hasLength(sharedSecret, "Shared secret must be specified")
         log.debug("sharedSecret: ${sharedSecret}")
         Assert.hasLength(radiusHost, "Hostname must be specified")
