@@ -12,3 +12,5 @@ tutorials:
             serverConfiguration: Configuration
         client:
             title: MOTP Client
+        motpGrails:
+            title: MOTP and Grails application

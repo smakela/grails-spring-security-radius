@@ -95,10 +95,17 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
             throw new BadCredentialsException("Bad credentials")
         }
 
-        //TODO: Authorization from RADIUS
-        //Is there a standard way? Only vendor specific role attributes exist?
-        //For now let's implement authorization from database.
-
+        /**
+         * TODO: Authorization from RADIUS
+         *
+         * Is there a standard way?
+         * Only vendor specific role attributes exist?
+         * Could configurable name of role attribute
+         * be solution?
+         * How do we separate multiple roles?
+         *
+         * For now let's implement authorization from database.
+         */
         new User(username, password, true, true, true, true, NO_ROLES);
     }
 
