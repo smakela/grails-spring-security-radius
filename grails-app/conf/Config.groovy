@@ -45,8 +45,8 @@ grails.plugins.springsecurity.interceptUrlMap = [
     '/*':            ['IS_AUTHENTICATED_FULLY']
  ]
 
+// Documdntation config
 grails.doc.title = 'Spring Security RADIUS Plugin'
 grails.doc.subtitle = 'Spring Security RADIUS Plugin'
 grails.doc.authors = 'Sami Mäkelä'
-grails.views.default.codec="none" // none, html, base64
-grails.views.gsp.encoding="UTF-8"
+
