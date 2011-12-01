@@ -1,0 +1,3 @@
+DefaultPackage
+org.codehaus.groovy.grails.plugins.springsecurity.radius
+radius.test
