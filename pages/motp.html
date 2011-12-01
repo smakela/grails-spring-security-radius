@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>3.1 Radius authentication using Mobile-OTP 0.1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/configuration.html"><strong>2</strong><span>Configuration</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/tutorials.html"><strong>3</strong><span>Tutorials</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>Spring Security RADIUS Plugin</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/configuration.html">&lt;&lt; <strong>2</strong><span>Configuration</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+
+
+                <div class="project">
+                    <h1>3.1 Radius authentication using Mobile-OTP - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Sami Mäkelä</p>
+
+                    <p><strong>Version:</strong> 0.1</p>
+
+                    
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#server"><strong>3.1</strong><span>MOTP Server</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#serverConfiguration"><strong>3.1.1</strong><span>Configuration</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#client"><strong>3.2</strong><span>MOTP Client</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#motpGrails"><strong>3.3</strong><span>MOTP and Grails application</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h2 id="motp">3.1 Radius authentication using Mobile-OTP</h2>
+Mobile-OTP is a free "strong authentication" solution for mobile devices like phones or PDAs.<p class="paragraph"/>Using static passwords for authentication, as it is commonly done, has quite a few security drawbacks:
+passwords can be guessed, forgotten, written down and stolen, eavesdropped or deliberately being told to other people.
+A better, more secure way of authentication is the so called "two-factor" or "strong authentication" based on one time passwords.
+Instead of authenticating with a simple password, each user carries a device ("token") to generate passwords that are valid only one time.
+
+
+
+<h2 id="server">3.1.1 MOTP Server</h2>
+In this tutorial we are using Mobile-OTP Authentication Server (MOTP-AS) as our server.<p class="paragraph"/>It's full blown RADIUS server specifically for Mobile-OTP. Features include:
+<ul class="star">
+<li>authenticating users by RADIUS (and optionally PAM or Apache)</li>
+<li>SQL database for user/device configuration</li>
+<li>Administration Web Interface (for admins and users)</li>
+</ul><p class="paragraph"/>You can download it from <a href=" http://motp-as.network-cube.de/index.php/download/current-version" target="blank">here</a><p class="paragraph"/>I strongly recommend virtual image as it's a no-brainer to import to your favorite virtualization environment.
+
+
+
+<h2 id="serverConfiguration">3.1.1.1 Configuration</h2>
+After you have installed MOTP-AS follow next steps.
+<ol>
+<li>Login to MOTP-AS administration web interface (username: admin password: motp).</li>
+<li>Go to SYSTEM -&#62; RADIUS -&#62; RADIUS CLIENTS</li>
+<li>Add new client:</li>
+<ol>
+<li>Name: <code>Name of your client (Without spaces)</code></li>
+<li>Secret: <code>Your shared secret</code></li>
+<li>IP: <code>IP adress of the machine where Grails application is going to be running</code></li>
+</ol>
+<li>Go to ADMINISTRATION -&#62; USERS</li>
+<li>Add new user:</li>
+<ol>
+<li>User: <code>Username of the user</code></li>
+<li>Name: <code>Name of the user</code></li>
+<li>Role: User</li>
+</ol>
+<li>Go to ADMINISTRATION -&#62; DEVICES</li>
+<li>Add new device:</li>
+<ol>
+<li>Name: <code>Name of the device</code></li>
+<li>Secret: <code>Your mobile client's shared secret (e.g mobilephone)</code></li>
+<li>Timezone: <code>Leave blank</code></li>
+</ol>
+<li>Go to ADMINISTRATION -&#62; ACCOUNTS</li>
+<li>Add new account</li>
+<ol>
+<li>User: <code>Choose the user you created</code></li>
+<li>PIN: <code>Your mobile client's PIN (e.g 1234)</code></li>
+<li>Device: <code>Choose the device you created</code></li>
+</ol></ol><p class="paragraph"/>
+
+
+<h2 id="client">3.1.2 MOTP Client</h2>
+I recommend these clients for using MOTP:<p class="paragraph"/>iPhone: <a href="http://itunes.apple.com/us/app/mobile-otp/id328973960&mt=8" target="blank">iOTP</a><p class="paragraph"/>Android: <a href="../ref/Httpsmarketandroidcomdetailsidnetmarinitsandroiddroidotpfeaturesearchresult/DroidOTP.html" class="https://market.android.com/details?id=net.marinits.android.droidotp&feature=search_result">DroidOTP</a><p class="paragraph"/>For another platforms go to MOTP <a href="http://motp.sourceforge.net/" target="blank">web-site</a>.<p class="paragraph"/>Next you have to configure same <strong class="bold">shared secret</strong> that you created in server configuration for the <strong class="bold">device</strong>.
+
+
+
+<h2 id="motpGrails">3.1.3 MOTP and Grails application</h2>
+All you need to do is install "grails-spring.security-radius" -plugin and
+do a minimum configuration to  <code>grails-app/conf/Config.groovy</code>.<p class="paragraph"/>After that you can start authenticate with one-time passwords.<p class="paragraph"/>Please make sure your mobile client's and MOTP server's clocks are synchronized!
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/configuration.html">&lt;&lt; <strong>2</strong><span>Configuration</span></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
