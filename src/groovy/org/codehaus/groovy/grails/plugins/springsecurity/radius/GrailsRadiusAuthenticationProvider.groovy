@@ -38,7 +38,7 @@ class GrailsRadiusAuthenticationProvider extends
     @Override
     protected UserDetails retrieveUser(String userName,
         UsernamePasswordAuthenticationToken token) {
-        def userDetails = grailsRadiusAuthenticator.authenticate(token)
+        def userDetails = radiusAuthenticator.authenticate(token)
         if (authorizeFromDb) {
             userDetails = userDetailsService.loadUserByUsername(userName)
         }
