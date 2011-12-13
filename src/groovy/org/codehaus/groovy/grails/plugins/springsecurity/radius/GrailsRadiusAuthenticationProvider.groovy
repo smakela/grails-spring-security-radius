@@ -25,7 +25,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class GrailsRadiusAuthenticationProvider extends
     AbstractUserDetailsAuthenticationProvider {
 
-    GrailsRadiusAuthenticator grailsRadiusAuthenticator
+    GrailsRadiusAuthenticator radiusAuthenticator
     GormUserDetailsService userDetailsService
     boolean authorizeFromDb
 
