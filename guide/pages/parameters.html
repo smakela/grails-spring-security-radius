@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>2.1 Configurable parameters 0.1</title>
+    <title>2.1 Configurable parameters 1.1.0</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -71,7 +71,7 @@ function addJsClass() {
 
                     <p><strong>Authors:</strong> Sami Mäkelä</p>
 
-                    <p><strong>Version:</strong> 0.1</p>
+                    <p><strong>Version:</strong> 1.1.0</p>
 
                     
                 </div>
@@ -81,7 +81,7 @@ function addJsClass() {
                 
 
 <h2 id="parameters">2.1 Configurable parameters</h2>
-<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Property</strong></th><th><strong class="bold">Default Value</strong></th><th><strong class="bold">Meaning</strong></th></tr><tr class="table-odd"><td>host</td><td>null</td><td>Hostname of the RADIUS server</td></tr><tr class="table-even"><td>sharedSecret</td><td>null</td><td>Secret key used for password hashing between RADIUS client and server</td></tr><tr class="table-odd"><td>authenticatorClassName</td><td><a href="http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/PAPAuthenticator.html" target="blank">PAPAuthenticator</a></td><td>Class name of the RADIUS authenticator. See <a href="http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/RadiusAuthenticator.html" target="blank">RadiusAuthenticator</a></td></tr><tr class="table-even"><td>active</td><td>true</td><td>Is plugin enabled?</td></tr><tr class="table-odd"><td>timeout</td><td>5</td><td>How long to wait response from the RADIUS server (seconds)</td></tr><tr class="table-even"><td>retries</td><td>3</td><td>How many times we want to retry connection to the RADIUS server?</td></tr><tr class="table-odd"><td>authentication.port</td><td>1812</td><td>Authentication port of the RADIUS server</td></tr><tr class="table-even"><td>authorization.useDatabase</td><td>false</td><td>Get roles etc. from the database?</td></tr><tr class="table-odd"><td>accounting.port</td><td>1813</td><td>Accounting port of the RADIUS server</td></tr></table>
+<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Property</strong></th><th><strong class="bold">Default Value</strong></th><th><strong class="bold">Meaning</strong></th><th>Configurable per RADIUS authenticator</th></tr><tr class="table-odd"><td>host</td><td>null</td><td>Hostname of the RADIUS server</td><td>Yes</td></tr><tr class="table-even"><td>sharedSecret</td><td>null</td><td>Secret key used for password hashing between RADIUS client and server</td><td>Yes</td></tr><tr class="table-odd"><td>authenticatorClassName</td><td><a href="http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/PAPAuthenticator.html" target="blank">PAPAuthenticator</a></td><td>Class name of the RADIUS authenticator. See <a href="http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/RadiusAuthenticator.html" target="blank">RadiusAuthenticator</a></td><td>Yes</td></tr><tr class="table-even"><td>active</td><td>true</td><td>Is plugin enabled?</td><td>No</td></tr><tr class="table-odd"><td>timeout</td><td>5</td><td>How long to wait response from the RADIUS server (seconds)</td><td>Yes</td></tr><tr class="table-even"><td>retries</td><td>3</td><td>How many times we want to retry connection to the RADIUS server?</td><td>Yes</td></tr><tr class="table-odd"><td>authentication.port</td><td>1812</td><td>Authentication port of the RADIUS server</td><td>Yes</td></tr><tr class="table-even"><td>authorization.useDatabase</td><td>false</td><td>Get roles etc. from the database?</td><td>No</td></tr><tr class="table-odd"><td>accounting.port</td><td>1813</td><td>Accounting port of the RADIUS server</td><td>Yes</td></tr></table>
 
 
 
