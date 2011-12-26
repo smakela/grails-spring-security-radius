@@ -1,12 +1,12 @@
 {table}
-*Property* | *Default Value* | *Meaning*
-host | null | Hostname of the RADIUS server
-sharedSecret | null | Secret key used for password hashing between RADIUS client and server
-authenticatorClassName | [PAPAuthenticator|http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/PAPAuthenticator.html] | Class name of the RADIUS authenticator. See [RadiusAuthenticator|http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/RadiusAuthenticator.html]
-active | true | Is plugin enabled?
-timeout | 5 | How long to wait response from the RADIUS server (seconds)
-retries | 3 | How many times we want to retry connection to the RADIUS server?
-authentication.port | 1812 | Authentication port of the RADIUS server
-authorization.useDatabase | false | Get roles etc. from the database?
-accounting.port | 1813 | Accounting port of the RADIUS server
+*Property* | *Default Value* | *Meaning* | Configurable per RADIUS authenticator
+host | null | Hostname of the RADIUS server | Yes
+sharedSecret | null | Secret key used for password hashing between RADIUS client and server | Yes
+authenticatorClassName | [PAPAuthenticator|http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/PAPAuthenticator.html] | Class name of the RADIUS authenticator. See [RadiusAuthenticator|http://coova-dev.s3.amazonaws.com/javadoc/jradius-core/net/jradius/client/auth/RadiusAuthenticator.html] | Yes
+active | true | Is plugin enabled? | No
+timeout | 5 | How long to wait response from the RADIUS server (seconds) | Yes
+retries | 3 | How many times we want to retry connection to the RADIUS server? | Yes
+authentication.port | 1812 | Authentication port of the RADIUS server | Yes
+authorization.useDatabase | false | Get roles etc. from the database? | No
+accounting.port | 1813 | Accounting port of the RADIUS server | Yes
 {table}

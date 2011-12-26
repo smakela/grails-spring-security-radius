@@ -13,15 +13,16 @@
  * limitations under the License.
  */
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticatorImpl
 import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticationProvider
+import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticator
+import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticatorImpl
 
 /**
  * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
  */
 class SpringSecurityRadiusGrailsPlugin {
     // the plugin version
-    def version = '1.0.0'
+    def version = '1.1.0'
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = '2.0 > *'
     // the other plugins this plugin depends on
@@ -70,18 +71,24 @@ class SpringSecurityRadiusGrailsPlugin {
 
         println 'Configuring Spring Security RADIUS ...'
 
-        radiusAuthenticator(GrailsRadiusAuthenticatorImpl) {
-            radiusAuthenticatorClassName = conf.radius.authenticatorClassName
-            sharedSecret = conf.radius.sharedSecret
-            radiusHost = conf.radius.host
-            authenticationPort = conf.radius.authentication.port
-            accountingPort = conf.radius.accounting.port
-            retries = conf.radius.retries
-            timeout = conf.radius.timeout
+        List<GrailsRadiusAuthenticator> radiusServers = new ArrayList()
+
+        conf.radius.servers.each { server ->
+            println "Configuring server... ${server}"
+            def authenticator = new GrailsRadiusAuthenticatorImpl(
+                radiusAuthenticatorClassName: server.authenticatorClassName?:conf.radius.authenticatorClassName,
+                sharedSecret: server.sharedSecret,
+                radiusHost: server.host,
+                authenticationPort: server.authentication?.port?:conf.radius.authentication.port,
+                accountingPort: server.accounting?.port?:conf.radius.accounting.port,
+                retries: server.retries?:conf.radius.retries,
+                timeout: server.timeout?:conf.radius.timeout)
+            authenticator.afterPropertiesSet()
+            radiusServers.add(authenticator)
         }
 
         radiusAuthenticationProvider(GrailsRadiusAuthenticationProvider) {
-            radiusAuthenticator = ref('radiusAuthenticator')
+            radiusAuthenticators = radiusServers
             userDetailsService = ref('userDetailsService')
             preAuthenticationChecks = ref('preAuthenticationChecks')
             postAuthenticationChecks = ref('postAuthenticationChecks')

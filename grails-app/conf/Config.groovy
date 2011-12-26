@@ -26,8 +26,12 @@ log4j = {
 }
 
 // Radius config
-grails.plugins.springsecurity.radius.host='motp'
-grails.plugins.springsecurity.radius.sharedSecret='1234567890'
+grails.plugins.springsecurity.radius.servers = [
+    [host:'10.0.0.95',
+     sharedSecret:'1234567890'],
+    [host:'motp',
+     sharedSecret:'1234567890']
+]
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'radius.test.User'

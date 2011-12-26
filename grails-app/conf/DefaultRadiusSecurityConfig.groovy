@@ -18,8 +18,7 @@
 */
 security {
     radius {
-        host = null
-        sharedSecret = null
+        servers = null
         authenticatorClassName = 'net.jradius.client.auth.PAPAuthenticator'
         active = true
         timeout = 5

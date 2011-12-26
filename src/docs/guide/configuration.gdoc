@@ -2,6 +2,21 @@ h2. Minimal configuration
 
 You have to configure two parameters in the @grails-app/conf/Config.groovy@:
 {code}
-grails.plugins.springsecurity.radius.host = 'your.radiusserver.org'
-grails.plugins.springsecurity.radius.sharedSecret = '1234567890'
+grails.plugins.springsecurity.radius.servers = [
+    [host:'motp',
+     sharedSecret:'1234567890']
+]
 {code}
+
+if you want to configure multiple RADIUS servers (for failover):
+
+{code}
+grails.plugins.springsecurity.radius.servers = [
+    [host:'motp-down',
+     sharedSecret:'1234567890-up'],
+    [host:'motp-up',
+     sharedSecret:'1234567890-down']
+]
+{code}
+
+If you don't configure properties per RADIUS server then the dafault value is used.

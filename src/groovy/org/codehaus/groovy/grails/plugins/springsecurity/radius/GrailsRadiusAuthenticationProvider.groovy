@@ -14,6 +14,7 @@
  */
 package org.codehaus.groovy.grails.plugins.springsecurity.radius
 
+import org.apache.commons.logging.LogFactory
 import org.codehaus.groovy.grails.plugins.springsecurity.GormUserDetailsService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
@@ -25,7 +26,9 @@ import org.springframework.security.core.userdetails.UserDetails
 class GrailsRadiusAuthenticationProvider extends
     AbstractUserDetailsAuthenticationProvider {
 
-    GrailsRadiusAuthenticator radiusAuthenticator
+    private static final log = LogFactory.getLog(this)
+
+    List<GrailsRadiusAuthenticator> radiusAuthenticators
     GormUserDetailsService userDetailsService
     boolean authorizeFromDb
 
@@ -38,9 +41,19 @@ class GrailsRadiusAuthenticationProvider extends
     @Override
     protected UserDetails retrieveUser(String userName,
         UsernamePasswordAuthenticationToken token) {
-        def userDetails = radiusAuthenticator.authenticate(token)
-        if (authorizeFromDb) {
-            userDetails = userDetailsService.loadUserByUsername(userName)
+        def userDetails
+        for (def authenticators = radiusAuthenticators.iterator(); authenticators.hasNext();) {
+            try {
+                userDetails = authenticators.next().authenticate(token)
+                if (authorizeFromDb) {
+                    userDetails = userDetailsService.loadUserByUsername(userName)
+                }
+            } catch (Exception e) {
+                if (authenticators.hasNext())
+                    log.debug("Could not authenticate! Trying next server...")
+                else
+                    throw e
+            }
         }
         userDetails
     }
