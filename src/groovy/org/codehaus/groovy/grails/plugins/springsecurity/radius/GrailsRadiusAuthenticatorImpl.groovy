@@ -81,7 +81,7 @@ class GrailsRadiusAuthenticatorImpl implements GrailsRadiusAuthenticator, Initia
         } catch (IOException ioe) {
             throw new AuthenticationServiceException("Error connecting to radius server", ioe)
         } catch (ClassNotFoundException cnfe) {
-            throw new AuthenticationServiceException("Cannot find radius authenticator: ${radiusAuthenticatorClassNme}", cnfe)
+            throw new AuthenticationServiceException("Cannot find radius authenticator: ${radiusAuthenticatorClassName}", cnfe)
         }
 
         if (!reply) {

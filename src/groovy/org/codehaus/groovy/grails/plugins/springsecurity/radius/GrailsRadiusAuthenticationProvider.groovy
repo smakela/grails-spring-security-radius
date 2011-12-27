@@ -16,6 +16,7 @@ package org.codehaus.groovy.grails.plugins.springsecurity.radius
 
 import org.apache.commons.logging.LogFactory
 import org.codehaus.groovy.grails.plugins.springsecurity.GormUserDetailsService
+import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider
 import org.springframework.security.core.userdetails.UserDetails
@@ -48,11 +49,12 @@ class GrailsRadiusAuthenticationProvider extends
                 if (authorizeFromDb) {
                     userDetails = userDetailsService.loadUserByUsername(userName)
                 }
-            } catch (Exception e) {
+                return userDetails
+            } catch (AuthenticationServiceException ase) {
                 if (authenticators.hasNext())
                     log.debug("Could not authenticate! Trying next server...")
                 else
-                    throw e
+                    throw ase
             }
         }
         userDetails
