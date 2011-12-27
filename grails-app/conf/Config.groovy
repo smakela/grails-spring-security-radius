@@ -27,9 +27,9 @@ log4j = {
 
 // Radius config
 grails.plugins.springsecurity.radius.servers = [
-    [host:'10.0.0.95',
-     sharedSecret:'1234567890'],
     [host:'motp',
+     sharedSecret:'1234567890'],
+    [host:'10.0.0.95',
      sharedSecret:'1234567890']
 ]
 
