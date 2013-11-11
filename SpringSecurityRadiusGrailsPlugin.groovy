@@ -23,7 +23,6 @@ import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuth
 class SpringSecurityRadiusGrailsPlugin {
     def version = '1.1.1'
     def grailsVersion = '2.0 > *'
-    def dependsOn = [springSecurityCore: '1.2.4 > *']
     def pluginExcludes = [
         'grails-app/views/**',
         'grails-app/controllers/**',
