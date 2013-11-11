@@ -1,12 +1,11 @@
 .DS_Store
 *.iws
-*Db.properties
-*Db.script
 .settings
 .groovy
 eclipse
-stacktrace.log
-target
+*.log
+/target
 /plugins
-/web-app/plugins
-/web-app/WEB-INF/classes
+grails-spring-security-radius-*.zip
+grails-spring-security-radius-*.zip.sha1
+plugin.xml
