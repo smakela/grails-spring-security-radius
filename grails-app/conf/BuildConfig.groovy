@@ -39,12 +39,10 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        compile ":spring-security-core:1.2.4", {
-			  export = false
-		  }
+        compile ":spring-security-core:1.2.4"
 
         runtime ":hibernate:$grailsVersion", {
-			  export = false
-		  }
+            export = false
+        }
     }
 }
