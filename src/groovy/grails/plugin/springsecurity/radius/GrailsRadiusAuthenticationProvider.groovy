@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.groovy.grails.plugins.springsecurity.radius
+package grails.plugin.springsecurity.radius
 
 import org.apache.commons.logging.LogFactory
-import org.codehaus.groovy.grails.plugins.springsecurity.GormUserDetailsService
+import grails.plugin.springsecurity.userdetails.GormUserDetailsService
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider

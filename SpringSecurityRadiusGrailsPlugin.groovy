@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticationProvider
-import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticator
-import org.codehaus.groovy.grails.plugins.springsecurity.radius.GrailsRadiusAuthenticatorImpl
+import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.radius.GrailsRadiusAuthenticationProvider
+import grails.plugin.springsecurity.radius.GrailsRadiusAuthenticator
+import grails.plugin.springsecurity.radius.GrailsRadiusAuthenticatorImpl
 
 /**
  * @author <a href="mailto:smakela@iki.fi">Sami Mäkelä</a>
  */
 class SpringSecurityRadiusGrailsPlugin {
-    def version = '1.1.1'
+    def version = '2.0.0-RC2'
     def grailsVersion = '2.0 > *'
     def pluginExcludes = [
         'grails-app/views/**',
@@ -32,6 +32,8 @@ class SpringSecurityRadiusGrailsPlugin {
         'web-app/**'
     ]
 
+	def loadAfter = ['springSecurityCore']
+	
     def title = 'Spring Security RADIUS Plugin'
     def author = 'Sami Mäkelä'
     def authorEmail = 'smakela@iki.fi'
@@ -84,5 +86,7 @@ class SpringSecurityRadiusGrailsPlugin {
         }
 
         SpringSecurityUtils.registerProvider 'radiusAuthenticationProvider'
+		
+		println '... finished configuring Spring Security RADIUS'
     }
 }

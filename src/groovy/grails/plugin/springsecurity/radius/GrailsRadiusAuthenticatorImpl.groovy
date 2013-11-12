@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.codehaus.groovy.grails.plugins.springsecurity.radius
+package grails.plugin.springsecurity.radius
 
 import net.jradius.client.RadiusClient
 import net.jradius.dictionary.Attr_UserName
@@ -25,7 +25,7 @@ import net.jradius.packet.attribute.AttributeFactory
 import net.jradius.packet.attribute.AttributeList
 
 import org.apache.commons.logging.LogFactory
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.SpringSecurityUtils
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.security.authentication.AuthenticationServiceException
 import org.springframework.security.authentication.BadCredentialsException
