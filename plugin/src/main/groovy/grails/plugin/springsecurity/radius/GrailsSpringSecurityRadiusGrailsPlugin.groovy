@@ -5,16 +5,9 @@ import grails.plugins.*
 
 class GrailsSpringSecurityRadiusGrailsPlugin extends Plugin {
 
-    // the version or versions of Grails the plugin is designed for
     def grailsVersion = "3.3.5 > *"
 
     def pluginExcludes = [
-            'grails-app/views/**',
-            'grails-app/controllers/**',
-            'grails-app/domain/**',
-            'grails-app/i18n/**',
-            'src/docs/**',
-            'web-app/**'
     ]
 
     def loadAfter = ['springSecurityCore']
