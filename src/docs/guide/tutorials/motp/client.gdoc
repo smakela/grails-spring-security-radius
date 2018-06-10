@@ -1,9 +1,0 @@
-I recommend these clients for using MOTP:
-
-iPhone: [iOTP|http://itunes.apple.com/us/app/mobile-otp/id328973960&mt=8]
-
-Android: [DroidOTP|https://market.android.com/details?id=net.marinits.android.droidotp&feature=search_result#?t=W251bGwsMSwxLDEsIm5ldC5tYXJpbml0cy5hbmRyb2lkLmRyb2lkb3RwIl0.]
-
-For another platforms go to MOTP [web-site|http://motp.sourceforge.net/].
-
-Next you have to configure same *shared secret* that you created in server configuration for the *device*.

@@ -1,0 +1,27 @@
+:sectnums:
+:sectnumlevels: 5
+===== MOTP Server Configuration
+
+After you have installed MOTP-AS follow next steps.
+
+* Login to MOTP-AS administration web interface (username: admin password: motp).
+* Go to SYSTEM -> RADIUS -> RADIUS CLIENTS
+* Add new client:
+** Name: `Name of your client (Without spaces)`
+** Secret: `Your shared secret`
+** IP: `IP adress of the machine where Grails application is going to be running`
+* Go to ADMINISTRATION -> USERS
+* Add new user:
+** User: `Username of the user`
+** Name: `Name of the user`
+** Role: User
+* Go to ADMINISTRATION -> DEVICES
+* Add new device:
+** Name: `Name of the device`
+** Secret: `Your mobile client's shared secret (e.g mobilephone)`
+** Timezone: `Leave blank`
+* Go to ADMINISTRATION -> ACCOUNTS
+* Add new account
+** User: `Choose the user you created`
+** PIN: `Your mobile client's PIN (e.g 1234)`
+** Device: `Choose the device you created`

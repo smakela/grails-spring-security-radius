@@ -1,0 +1,18 @@
+:sectnums:
+=== Configurable parameters
+
+|===
+
+| *Property* | *Default Value* | *Meaning* | *Configurable per RADIUS authenticator*
+
+| host | null | Hostname of the RADIUS server | Yes
+
+| sharedSecret | null | Secret key used for password hashing between RADIUS client and server | Yes
+| authenticationProtocol | "PAP" | RADIUS authentication protocol| Yes
+| active | true | Is plugin enabled? | No
+| timeout | 5000 | How long to wait response from the RADIUS server (milliseconds) | Yes
+| retries | 3 | How many times we want to retry connection to the RADIUS server? | Yes
+| authentication.port | 1812 | Authentication port of the RADIUS server | Yes
+| authorization.useDatabase | false | Get roles etc. from the database? | No
+| accounting.port | 1813 | Accounting port of the RADIUS server | Yes
+|===

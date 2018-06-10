@@ -1,0 +1,12 @@
+:sectnums:
+=== MOTP Client
+
+I recommend these clients for using MOTP:
+
+iPhone: http://itunes.apple.com/us/app/mobile-otp/id328973960&mt=8[iOTP]
+
+Android: https://play.google.com/store/apps/details?id=net.marinits.android.droidotp&hl=de[DroidOTP]
+
+For another platforms go to MOTP http://motp.sourceforge.net/[web-site].
+
+Next you have to configure same *shared secret* that you created in server configuration for the *device*.

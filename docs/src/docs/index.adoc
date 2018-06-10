@@ -1,0 +1,15 @@
+= Spring Security RADIUS Plugin - Reference Documentation
+Sami Mäkelä
+
+:doctype: book
+:encoding: utf-8
+:lang: en
+:toc: left
+:toclevels: 4
+:numbered:
+
+include::introduction.adoc[]
+
+include::configuration.adoc[]
+
+include::tutorials.adoc[]

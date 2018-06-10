@@ -1,6 +1,0 @@
-All you need to do is install "grails-spring.security-radius" -plugin and
-do a minimum configuration to  @grails-app/conf/Config.groovy@.
-
-After that you can start authenticate with one-time passwords.
-
-Please make sure your mobile client's and MOTP server's clocks are synchronized!

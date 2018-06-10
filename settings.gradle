@@ -1,0 +1,4 @@
+include 'docs'
+include 'plugin'
+findProject(':plugin').name = 'spring-security-radius'
+rootProject.name = 'grails-spring-security-radius'
