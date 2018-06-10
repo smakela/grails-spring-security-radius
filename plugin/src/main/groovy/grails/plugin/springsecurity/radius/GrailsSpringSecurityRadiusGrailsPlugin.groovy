@@ -5,7 +5,7 @@ import grails.plugins.*
 
 class GrailsSpringSecurityRadiusGrailsPlugin extends Plugin {
 
-    def grailsVersion = "3.3.5 > *"
+    def grailsVersion = "3.0.0 > *"
 
     def pluginExcludes = [
     ]
