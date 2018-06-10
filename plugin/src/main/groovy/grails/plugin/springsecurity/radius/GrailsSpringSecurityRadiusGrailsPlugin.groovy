@@ -23,6 +23,7 @@ class GrailsSpringSecurityRadiusGrailsPlugin extends Plugin {
     def scm = [ url: 'https://github.com/smakela/grails-spring-security-radius/' ]
     
     Closure doWithSpring() { {->
+
             def conf = SpringSecurityUtils.securityConfig
 
             if (!conf || !conf.active) {
@@ -36,7 +37,11 @@ class GrailsSpringSecurityRadiusGrailsPlugin extends Plugin {
                 return
             }
 
-            println 'Configuring Spring Security RADIUS ...'
+            boolean printStatusMessages = (conf.printStatusMessages instanceof Boolean) ? conf.printStatusMessages : true
+
+            if (printStatusMessages) {
+                println 'Configuring Spring Security RADIUS ...'
+            }
 
             List<GrailsRadiusAuthenticator> radiusServers = new ArrayList()
 
@@ -64,7 +69,9 @@ class GrailsSpringSecurityRadiusGrailsPlugin extends Plugin {
 
             SpringSecurityUtils.registerProvider 'radiusAuthenticationProvider'
 
-            println '... finished configuring Spring Security RADIUS'
+            if (printStatusMessages) {
+                println '... finished configuring Spring Security RADIUS'
+            }
         }
     }
 
