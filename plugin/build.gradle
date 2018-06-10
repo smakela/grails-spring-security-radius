@@ -8,7 +8,7 @@ buildscript {
     }
 }
 
-version "0.1"
+version projectVersion
 group "grails.spring.security.radius"
 
 apply plugin:"eclipse"
